@@ -1,0 +1,17 @@
+<h3><%= "Arquivo: #{@file.filename}" %></h3>
+<h4><%= "Número de Linhas: #{@file_data.count}" %></h4>
+
+<table>
+  <tr>
+  <% @file_data.headers.each do |header| %>
+    <th><%= header %></th>
+  <% end %>
+  </tr>
+  <% @file_data.each do |row| %>
+    <tr>
+    <% row.each do |data| %>
+      <td><%= data[1] %></td>
+    <% end %>
+    </tr>
+  <% end %> 
+</table>
