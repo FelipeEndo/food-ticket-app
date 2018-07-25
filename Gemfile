@@ -26,6 +26,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Repository for collecting Locale data for Ruby on Rails I18n
+# as well as other interesting, Rails related I18n stuff
+gem 'rails-i18n'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -39,6 +43,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.7'
+  # A Ruby static code analyzer and formatter, based on the community Ruby style guide. 
+  gem 'rubocop', require: false
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  # A library for setting up Ruby objects as test data. 
+  gem 'factory_bot_rails'
 end
 
 group :development do
