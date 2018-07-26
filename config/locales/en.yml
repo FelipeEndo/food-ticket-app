@@ -38,3 +38,4 @@ en:
   token: Token
   admission_date: Admission Date
   available_amount: Avaliable Amount
+  wrong_file_format: Name Format is Invalid

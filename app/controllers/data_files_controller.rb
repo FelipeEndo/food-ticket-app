@@ -5,7 +5,7 @@ class DataFilesController < ApplicationController
     if @data_file.save
       redirect_to @data_file
     else
-      redirect_to root_path
+      redirect_to root_path, notice: @data_file.errors.full_messages
     end
   end
   

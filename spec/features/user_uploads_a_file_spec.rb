@@ -41,7 +41,29 @@ feature 'User upload a csv File' do
         end
       end
     end
+  end
+
+  scenario 'but filename its not in proper format' do
+    user = create(:user)
+    file = Rails.root.join('public',
+                            'test_files',
+                            'dados-sem-data.csv')
+
     
+    login_as(user, scope: :user)
+    visit root_path
     
+    attach_file file
+    click_button I18n.translate('send_file')
+    
+    expect(page).to have_css('li', text: I18n.translate('wrong_file_format'))
+  end
+  
+  scenario 'but filename its not in proper extension' do
+    pending "add some examples to (or delete) "
+  end
+  
+  scenario 'but file has not right content' do
+    pending "add some examples to (or delete) "
   end
 end
