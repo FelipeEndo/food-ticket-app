@@ -33,6 +33,8 @@ gem 'rails-i18n'
 gem 'devise'
 # A library for generating fake data such as names, addresses, and phone numbers.
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+# Integration of RubyMoney - Money with Rails
+gem 'money-rails', '~>1'
 
 
 # Use ActiveStorage variant

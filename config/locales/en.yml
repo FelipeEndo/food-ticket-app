@@ -32,3 +32,9 @@
 en:
   hello: "Hello world"
   send_file: Send File
+  name: Name
+  surname: Surname
+  email: Email
+  token: Token
+  admission_date: Admission Date
+  available_amount: Avaliable Amount

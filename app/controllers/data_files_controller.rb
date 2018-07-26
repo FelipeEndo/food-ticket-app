@@ -11,11 +11,22 @@ class DataFilesController < ApplicationController
   
   def show
     @file = DataFile.find(params[:id]).file
-    @file_data = CSV.parse(@file.download, headers: true)
+    @header = replace_name_and_surname(@file.download).first
+    @file_content = replace_name_and_surname(@file.download)
   end
   
   private
   def data_file_params
     params.require(:data_file).permit(:file)
   end
+  
+  def replace_name_and_surname(file)
+    CSV.parse(file).each_with_index do |line, index|
+      if index > 0
+        line[0] = [line[0], line[1]].join(' ')
+      end
+      line.delete_at(1)
+    end
+  end
+
 end

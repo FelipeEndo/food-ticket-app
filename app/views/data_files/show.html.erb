@@ -1,16 +1,37 @@
 <h3><%= "Arquivo: #{@file.filename}" %></h3>
-<h4><%= "Número de Linhas: #{@file_data.count}" %></h4>
+<h4><%= "Número de Linhas: #{@file_content.count}" %></h4>
 
-<table>
+<table class='older_employees'>
   <tr>
-  <% @file_data.headers.each do |header| %>
-    <th><%= header %></th>
+  <th>#</th>
+  <% @header.each do |header| %>
+    <th><%= t header %></th>
   <% end %>
   </tr>
-  <% @file_data.each do |row| %>
+
+  <% older_employees(@file_content).each_with_index do |row, index| %>
     <tr>
+    <td><%= index+1 %></td>
     <% row.each do |data| %>
-      <td><%= data[1] %></td>
+      <td><%= data %></td>
+    <% end %>
+    </tr>
+  <% end %> 
+</table>
+<br>
+<table class='newer_employees'>
+  <tr>
+  <th>#</th>
+  <% @header.each do |header| %>
+    <th><%= t header %></th>
+  <% end %>
+  </tr>
+
+  <% newer_employees(@file_content).each_with_index do |row, index| %>
+    <tr>
+    <td><%= index+1 %></td>
+    <% row.each do |data| %>
+      <td><%= data %></td>
     <% end %>
     </tr>
   <% end %> 
