@@ -7,7 +7,6 @@ feature 'User upload a csv File' do
                             'test_files',
                             'dados-19-07-2018.csv')
 
-    
     login_as(user, scope: :user)
     visit root_path
     
@@ -79,6 +78,12 @@ feature 'User upload a csv File' do
   end
   
   scenario 'but file has not right content' do
-    pending "add some examples to (or delete) "
+    header = ["name", "surname", "email", "token", "admission_date", "available_amount"]
+    file = Rails.root.join('public',
+                            'test_files',
+                            'dados-19-07-2018.csv')
+    
+    header.eql? CSV.read(file, headers:true).headers
+    
   end
 end
