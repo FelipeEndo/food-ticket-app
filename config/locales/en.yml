@@ -39,3 +39,4 @@ en:
   admission_date: Admission Date
   available_amount: Avaliable Amount
   wrong_file_format: Name Format is Invalid
+  wrong_file_extension: Extension is Invalid

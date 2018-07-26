@@ -26,6 +26,8 @@ feature 'User upload a csv File' do
     expect(page).to have_css('th', text: I18n.translate('admission_date'), count: 2)
     expect(page).to have_css('th', text: I18n.translate('available_amount'), count: 2)
     
+    expect(page).to have_css('h3', text: 'Older Employees')
+    
     older_employees(replace_name_and_surname(CSV.read file)).each_with_index do |line, index|
       line.each do |data|
         if index > 0
@@ -33,6 +35,8 @@ feature 'User upload a csv File' do
         end
       end
     end
+    
+    expect(page).to have_css('h3', text: 'Newer Employees')
     
     newer_employees(replace_name_and_surname(CSV.read file)).each_with_index do |line, index|
       line.each do |data|
@@ -60,7 +64,18 @@ feature 'User upload a csv File' do
   end
   
   scenario 'but filename its not in proper extension' do
-    pending "add some examples to (or delete) "
+    user = create(:user)
+    file = Rails.root.join('public',
+                            '404.html')
+
+    
+    login_as(user, scope: :user)
+    visit root_path
+    
+    attach_file file
+    click_button I18n.translate('send_file')
+    
+    expect(page).to have_css('li', text: I18n.translate('wrong_file_extension'))
   end
   
   scenario 'but file has not right content' do
