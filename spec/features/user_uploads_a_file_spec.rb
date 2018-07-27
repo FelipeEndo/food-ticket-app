@@ -54,7 +54,7 @@ feature 'User upload a csv File' do
     end
   end
 
-  scenario 'but filename its not in proper format' do
+  scenario 'and receive notice when file dont have the right config' do
     user = create(:user)
     file = Rails.root.join('spec',
                            'shared',
@@ -70,34 +70,5 @@ feature 'User upload a csv File' do
 
     expect(page)
       .to have_css('li', text: I18n.translate('wrong_filename_format'))
-  end
-
-  scenario 'but filename its not in proper extension' do
-    user = create(:user)
-    file = Rails.root.join('spec',
-                           'shared',
-                           'test_files',
-                           'wrong_file_extension',
-                           'dados-02-02-2002.pdf')
-
-    login_as(user, scope: :user)
-    visit root_path
-
-    attach_file file
-    click_button I18n.translate('send_file')
-
-    expect(page)
-      .to have_css('li', text: I18n.translate('wrong_filename_extension'))
-  end
-
-  scenario 'but file has not right content' do
-    header = %w[name surname email token admission_date available_amount]
-    file = Rails.root.join('spec',
-                           'shared',
-                           'test_files',
-                           'wrong_content',
-                           'dados-01-01-2001.csv')
-
-    header.eql? CSV.read(file, headers: true).headers
   end
 end
