@@ -13,10 +13,14 @@
 
   <% older_employees(@file_content).each_with_index do |row, index| %>
     <tr>
-    <td><%= index+1 %></td>
-    <% row.each do |data| %>
-      <td><%= data %></td>
-    <% end %>
+      <td><%= index+1 %></td>
+      <% row.each do |data| %>
+        <% if data.eql? row.last %>  
+          <td><%= t('currency_format.BRL',value: data) %></td>
+        <% else %>
+          <td><%= data %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %> 
 </table>
@@ -36,7 +40,11 @@
     <tr>
     <td><%= index+1 %></td>
     <% row.each do |data| %>
-      <td><%= data %></td>
+      <% if data.eql? row.last %>  
+        <td><%= t('currency_format.BRL',value: data) %></td>
+      <% else %>
+        <td><%= data %></td>
+      <% end %>
     <% end %>
     </tr>
   <% end %> 
