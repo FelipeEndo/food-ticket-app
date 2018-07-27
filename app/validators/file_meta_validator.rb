@@ -1,4 +1,4 @@
-class FileContentValidator < ActiveModel::Validator
+class FileMetaValidator < ActiveModel::Validator
   require 'csv'
   NAME = '^[a-zA-Z]+$'
   SURNAME = '^[a-zA-Z]+$'
@@ -12,7 +12,7 @@ class FileContentValidator < ActiveModel::Validator
                    '[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)'\
                    '(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$'
   AMOUNT = '^[0-9]+$'
-  
+  FILE_FORMAT = '\G(dados)-[0-3]\d-[0-1]\d-[1-2][09]\d\d'
 
   def validate(record)
     unless file_match?(record.file)
@@ -21,6 +21,14 @@ class FileContentValidator < ActiveModel::Validator
     
     unless header_match?(record.file)
       record.errors[:file] << I18n.translate('wrong_content_header')
+    end
+    
+    unless regex_match?(record.file.filename.to_s, FILE_FORMAT)
+      record.errors[:file] << I18n.translate('wrong_filename_format')
+    end
+    
+    unless record.file.filename.to_s.end_with?('.csv')
+      record.errors[:file] << I18n.translate('wrong_filename_extension')
     end
   end
   

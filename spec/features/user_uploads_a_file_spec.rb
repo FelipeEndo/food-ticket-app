@@ -71,4 +71,7 @@ feature 'User upload a csv File' do
     expect(page)
       .to have_css('li', text: I18n.translate('wrong_filename_format'))
   end
+
+  scenario 'but User its not logged in' do
+  end
 end
