@@ -38,7 +38,9 @@ en:
   token: Token
   admission_date: Admission Date
   available_amount: Avaliable Amount
-  wrong_file_format: Name Format is Invalid
-  wrong_file_extension: Extension is Invalid
+  wrong_filename_format: Name Format is Invalid
+  wrong_filename_extension: Extension is Invalid
+  wrong_file_content: Content is invalid or have bad format data
+  wrong_content_header: Content Header don't match with the expected
   currency_format:
     BRL: 'R$%{value},00'

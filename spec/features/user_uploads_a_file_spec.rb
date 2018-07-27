@@ -3,9 +3,11 @@ require 'rails_helper'
 feature 'User upload a csv File' do
   scenario 'successfully' do
     user = create(:user)
-    file = Rails.root.join('public',
-                            'test_files',
-                            'dados-19-07-2018.csv')
+    file = Rails.root.join('spec',
+                           'shared',
+                           'test_files',
+                           'original',
+                           'dados-19-07-2018.csv')
 
     login_as(user, scope: :user)
     visit root_path
@@ -48,9 +50,11 @@ feature 'User upload a csv File' do
 
   scenario 'but filename its not in proper format' do
     user = create(:user)
-    file = Rails.root.join('public',
-                            'test_files',
-                            'dados-sem-data.csv')
+    file = Rails.root.join('spec',
+                           'shared',
+                           'test_files',
+                           'wrong_file_format',
+                           'dados-sem-data.csv')
 
     
     login_as(user, scope: :user)
@@ -59,13 +63,16 @@ feature 'User upload a csv File' do
     attach_file file
     click_button I18n.translate('send_file')
     
-    expect(page).to have_css('li', text: I18n.translate('wrong_file_format'))
+    expect(page).to have_css('li', text: I18n.translate('wrong_filename_format'))
   end
   
   scenario 'but filename its not in proper extension' do
     user = create(:user)
-    file = Rails.root.join('public',
-                            '404.html')
+    file = Rails.root.join('spec',
+                           'shared',
+                           'test_files',
+                           'wrong_file_extension',
+                           'dados-02-02-2002.pdf')
 
     
     login_as(user, scope: :user)
@@ -74,14 +81,16 @@ feature 'User upload a csv File' do
     attach_file file
     click_button I18n.translate('send_file')
     
-    expect(page).to have_css('li', text: I18n.translate('wrong_file_extension'))
+    expect(page).to have_css('li', text: I18n.translate('wrong_filename_extension'))
   end
   
   scenario 'but file has not right content' do
     header = ["name", "surname", "email", "token", "admission_date", "available_amount"]
-    file = Rails.root.join('public',
-                            'test_files',
-                            'dados-19-07-2018.csv')
+    file = Rails.root.join('spec',
+                           'shared',
+                           'test_files',
+                           'wrong_content',
+                           'dados-01-01-2001.csv')
     
     header.eql? CSV.read(file, headers:true).headers
     
