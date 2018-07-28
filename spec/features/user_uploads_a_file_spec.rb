@@ -73,5 +73,7 @@ feature 'User upload a csv File' do
   end
 
   scenario 'but User its not logged in' do
+    visit root_path
+    expect(page).to have_current_path new_user_session_path
   end
 end
