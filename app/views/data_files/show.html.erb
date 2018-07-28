@@ -1,51 +1,7 @@
 <h3><%= "Arquivo: #{@file.filename}" %></h3>
 <h4><%= "Número de Linhas: #{@file_content.count}" %></h4>
 
-<h3>Older Employees</h3>
+<%= render partial: '/data_files/shared/older_employees' %>
+</br></br>
+<%= render partial: '/data_files/shared/newer_employees' %>
 
-<table class='older_employees'>
-  <tr>
-  <th>#</th>
-  <% @header.each do |header| %>
-    <th><%= t header %></th>
-  <% end %>
-  </tr>
-
-  <% older_employees(@file_content).each_with_index do |row, index| %>
-    <tr>
-      <td><%= index+1 %></td>
-      <% row.each do |data| %>
-        <% if data.eql? row.last %>  
-          <td><%= t('currency_format.BRL',value: data) %></td>
-        <% else %>
-          <td><%= data %></td>
-        <% end %>
-      <% end %>
-    </tr>
-  <% end %> 
-</table>
-<br>
-
-<h3>Newer Employees</h3>
-
-<table class='newer_employees'>
-  <tr>
-  <th>#</th>
-  <% @header.each do |header| %>
-    <th><%= t header %></th>
-  <% end %>
-  </tr>
-
-  <% newer_employees(@file_content).each_with_index do |row, index| %>
-    <tr>
-    <td><%= index+1 %></td>
-    <% row.each do |data| %>
-      <% if data.eql? row.last %>  
-        <td><%= t('currency_format.BRL',value: data) %></td>
-      <% else %>
-        <td><%= data %></td>
-      <% end %>
-    <% end %>
-    </tr>
-  <% end %> 
-</table>

@@ -1,13 +1,1 @@
-<% if flash[:notice] %>
-    <div class="notice"><li><%= flash[:notice] %></li></div>
-  <% end %>
-<%= form_for @data_file, html: {multipart: true} do |form| %>
-  <div class="field">
-    <%= form.label :file %>
-    <%= form.file_field :file %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit t('send_file') %>
-  </div>
-<% end %>
+<%= render partial: '/home/form' %>

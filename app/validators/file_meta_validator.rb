@@ -36,7 +36,8 @@ class FileMetaValidator < ActiveModel::Validator
   end
   
   def header_match?(file)
-    header = ["name", "surname", "email", "token", "admission_date", "available_amount"]
+    header = ["name", "surname", "email", "token",
+              "admission_date", "available_amount"]
     header.eql? CSV.parse(file.download).first 
   end
   
