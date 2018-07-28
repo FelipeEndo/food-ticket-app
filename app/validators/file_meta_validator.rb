@@ -2,6 +2,11 @@ class FileMetaValidator < ActiveModel::Validator
   require 'csv'
 
   def validate(record)
+    unless presence_of?(record.file)
+      record.errors[:file] << I18n.translate('file_nil')
+      return
+    end
+    
     unless file_match?(record.file)
       record.errors[:file] << I18n.translate('wrong_file_content')
     end
@@ -20,6 +25,10 @@ class FileMetaValidator < ActiveModel::Validator
     end
   end
   
+  def presence_of?(file)
+    file.attached?
+  end
+  
   def file_match?(file)
     regex_hash = [REGEX['expression']['letters_only'],
                   REGEX['expression']['letters_only'],
@@ -28,11 +37,11 @@ class FileMetaValidator < ActiveModel::Validator
                   REGEX['expression']['date_format'],
                   REGEX['expression']['numbers_only']
                   ]
-    CSV.parse(file.download, headers:true).each do |line|
-      line.each_with_index do |row, index|
-        return false unless regex_match?(line[index], regex_hash[index])
+      CSV.parse(file.download, headers:true).each do |line|
+        line.each_with_index do |row, index|
+          return false unless regex_match?(line[index], regex_hash[index])
+        end
       end
-    end
   end
   
   def header_match?(file)

@@ -42,5 +42,6 @@ en:
   wrong_filename_extension: Extension is Invalid
   wrong_file_content: Content is invalid or have bad format data
   wrong_content_header: Content Header don't match with the expected
+  file_nil: Must to be a file to upload
   currency_format:
     BRL: 'R$%{value},00'

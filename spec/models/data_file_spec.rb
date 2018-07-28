@@ -61,6 +61,12 @@ RSpec.describe DataFile, type: :model do
     expect(data.errors.full_messages)
       .to eq(["File #{I18n.translate('wrong_filename_extension')}"])
   end
+  
+  it 'ensures there is a file' do
+    data = DataFile.new
+    result = data.save
+    expect(result).to eq(false)
+  end
 
   it 'saves with all correct configs' do
     file = Rails.root.join('spec',
