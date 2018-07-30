@@ -31,8 +31,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-i18n'
 # Flexible authentication solution for Rails with Warden. 
 gem 'devise'
-# A library for generating fake data such as names, addresses, and phone numbers.
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Integration of RubyMoney - Money with Rails
 gem 'money-rails', '~>1'
 

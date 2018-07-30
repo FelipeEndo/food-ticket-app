@@ -20,7 +20,7 @@ class FileMetaValidator < ActiveModel::Validator
       record.errors[:file] << I18n.translate('wrong_filename_format')
     end
     
-    unless record.file.filename.to_s.end_with?('.csv')
+    unless record.file.filename.extension.eql? 'csv'
       record.errors[:file] << I18n.translate('wrong_filename_extension')
     end
   end

@@ -39,9 +39,10 @@ en:
   admission_date: Admission Date
   available_amount: Avaliable Amount
   wrong_filename_format: Name Format is Invalid
-  wrong_filename_extension: Extension is Invalid
+  wrong_filename_extension: Extension is Invalid. Must be .CSV
   wrong_file_content: Content is invalid or have bad format data
   wrong_content_header: Content Header don't match with the expected
+  uploaded_files: Uploaded Files
   file_nil: Must to be a file to upload
   currency_format:
     BRL: 'R$%{value},00'

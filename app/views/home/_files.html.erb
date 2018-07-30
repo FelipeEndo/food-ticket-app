@@ -1,0 +1,4 @@
+<h4><%= t('uploaded_files') %></h4>
+<% @all_data_files.each do |data_file| %>
+    <%= link_to data_file.file.filename.base, data_file_path(data_file) %>
+<% end %>

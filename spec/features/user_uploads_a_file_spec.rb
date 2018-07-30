@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User upload a csv File' do
+feature 'User upload a File' do
   scenario 'successfully' do
     user = create(:user)
     file = Rails.root.join('spec',
@@ -70,10 +70,5 @@ feature 'User upload a csv File' do
 
     expect(page)
       .to have_css('li', text: I18n.translate('wrong_filename_format'))
-  end
-
-  scenario 'but User its not logged in' do
-    visit root_path
-    expect(page).to have_current_path new_user_session_path
   end
 end
