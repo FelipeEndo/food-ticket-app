@@ -31,8 +31,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-i18n'
 # Flexible authentication solution for Rails with Warden. 
 gem 'devise'
-# Integration of RubyMoney - Money with Rails
-gem 'money-rails', '~>1'
 
 
 # Use ActiveStorage variant
